@@ -1,0 +1,3 @@
+[submodule "src/github.com/irbekrm/FizzBuzzGo"]
+	path = src/github.com/irbekrm/FizzBuzzGo
+	url = git@github.com:irbekrm/FizzBuzzGo.git

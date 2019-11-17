@@ -1,0 +1,5 @@
+check process fizzbuzzgo
+    with pidfile /var/vcap/sys/run/fizzbuzzgo/pid
+    start program "/var/vcap/jobs/fizzbuzzgo/bin/ctl start"
+    stop program "/var/vcap/jobs/fizzbuzzgo/bin/ctl stop"
+    group vcap

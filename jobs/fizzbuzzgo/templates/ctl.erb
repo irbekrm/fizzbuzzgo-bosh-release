@@ -1,0 +1,34 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/fizzbuzzgo
+LOG_DIR=/var/vcap/sys/log/fizzbuzzgo
+PKG_DIR=/var/vcap/packages/fizzbuzzgo
+PIDFILE=${RUN_DIR}/pid
+
+case $1 in
+    start)
+        mkdir -p $RUN_DIR $LOG_DIR
+        chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+        echo $$ > $PIDFILE
+
+        cd $PKG_DIR
+
+        chmod +x fizzbuzzgo
+
+        exec ./fizzbuzzgo \
+            >> $LOG_DIR/fizzbuzzgo.stdout.log \
+            2>> $LOG_DIR/fizzbuzzgo.stderr.log
+        
+        ;;
+
+    stop)
+        kill -9 `cat $PIDFILE`
+        rm -rf $PIDFILE
+
+        ;;
+
+    *)
+        echo "Usage: ctl {start|stop}" ;;
+    
+esac

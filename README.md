@@ -38,5 +38,20 @@ A Bosh release of a very simple [Go app](https://github.com/irbekrm/FizzBuzzGo).
       // Write the job's spec file (`jobs/fizzbuzzgo/spec`)
 ```
 
+4. `fizzbuzzgo` job depends on `fizzbuzzgo` package which means that this package is a runtime dependency. `fizzbuzzgo` package depends on the `go` package at compile time, which means that the `go` package is a compile time dependency.
 
+`packages/go/spec` - package's spec file. Name, dependencies and location where Bosh can find the files and binaries this package needs at compile time. Locations where Bosh will look are `src/` and `blobs/`.
+
+`packages/go/packaging` - packaging script. Script that Bosh will run to install package on the VM.
+
+```
+    bosh generate-package go
+
+    bosh generate-package fizzbuzzgo
+
+    // Write package specs for both packages
+
+    // Write packaging scripts for both packages
+
+    // Update job spec with `packages` block- runtime dependencies of the job. In this case, the `fizzbuzzgo` job has a dependency on `fizzbuzzgo` package.
 

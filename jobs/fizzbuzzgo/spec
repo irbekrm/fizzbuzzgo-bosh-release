@@ -4,6 +4,7 @@ name: fizzbuzzgo
 templates:
     ctl.erb: bin/ctl
 
-packages: []
+packages:
+- fizzbuzzgo
 
 properties: {}

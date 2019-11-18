@@ -1,0 +1,14 @@
+set -eux
+
+export GOROOT=/var/vcap/packages/go/go
+
+export PATH=${GOROOT}/bin:${PATH}
+
+PACKAGE_NAME=github.com/irbekrm/fizzbuzzgo
+mkdir -p ${POSH_INSTALL_TARGET}/src/${PACKAGE_NAME}
+cp -a ${BOSH_COMPILE_TARGET}/${PACKAGE_NAME}/* ${BOSH_INSTALL_TARGET}/src/${PACKAGE_NAME}
+export GOPATH=${BOSH_INSTALL_TARGET}
+
+go install ${PACKAGE_NAME}
+
+rm -rf ${BOSH_INSTALL_TARGET}/pkg ${BOSH_INSTALL_TARGET}/src

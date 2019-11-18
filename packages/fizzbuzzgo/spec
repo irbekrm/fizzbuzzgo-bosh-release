@@ -1,0 +1,8 @@
+---
+name: fizzbuzzgo
+
+dependencies:
+- name: go
+
+files:
+- github.com/irbekrm/FizzBuzzGo/**/*.go
